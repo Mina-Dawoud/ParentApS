@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-xs-12">
+    <img [src]="currentUser.imagePath" alt="currentUser.firstName" class="image large-image">
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{currentUser.firstName}} {{currentUser.lastName}}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-primary" (click)="onEditUser()">Edit User</button>
+    <button class="btn btn-danger" (click)="modal.show()">Delete User</button>
+  </div>
+</div>
+
+<app-modal #modal>
+  <div class="app-modal-header">
+    Confirmation
+  </div>
+  <div class="app-modal-body">
+    Are you sure to delete this user?
+  </div>
+  <div class="app-modal-footer">
+    <button type="button" class="btn btn-default" (click)="modal.hide()">No</button>
+    <button type="button" class="btn btn-primary" (click)="onDeleteUser()">Yes</button>
+  </div>
+</app-modal>

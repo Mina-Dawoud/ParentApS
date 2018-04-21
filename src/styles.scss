@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+
+.image{
+    width: 100%;
+    &.large-image{
+        max-height: 350px;
+    }
+    &.small-image{
+        height: 125px;
+    }
+}
