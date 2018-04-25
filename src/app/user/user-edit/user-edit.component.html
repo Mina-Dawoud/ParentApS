@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-xs-offset-5">
+        <div *ngIf="showSpinner" class="loader"></div>
+    </div>
+  <div *ngIf="!showSpinner" class="col-xs-12">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-success" [disabled]="!userForm.valid">Save
+          </button>
+          <button type="submit" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input formControlName="firstName" type="text" id="firstName" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input formControlName="lastName" type="text" id="lastName" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="imagePath">Image URL</label>
+            <input formControlName="imagePath" #imagePath type="text" id="imagePath" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <img [src]="imagePath.value" class="image large-image">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
