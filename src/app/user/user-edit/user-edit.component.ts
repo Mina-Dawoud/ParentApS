@@ -14,6 +14,7 @@ export class UserEditComponent implements OnInit {
   id: number;
   editMode: boolean = false;
   userForm: FormGroup;
+  showSpinner: boolean;
 
   constructor(private route: ActivatedRoute,
     private userService: UserService,
@@ -30,14 +31,20 @@ export class UserEditComponent implements OnInit {
     );
   }
   onSubmit() {
+    this.showSpinner = true;
     if (this.editMode) {
-      this.userService.updateUser(this.id, this.userForm.value);
-      this.utilities.showToast('User Data Updated Successfully', 'Update Message');
+      this.userService.updateUser(this.id, this.userForm.value).subscribe(() => {
+        this.utilities.showToast('User Data Updated Successfully', 'Update Message');
+        this.onCancel();
+        this.showSpinner = false;
+      });
     } else {
-      this.userService.addUser(this.userForm.value);
-      this.utilities.showToast('User Added Successfully', 'Add Message');
+      this.userService.addUser(this.userForm.value).subscribe(() => {
+        this.utilities.showToast('User Added Successfully', 'Add Message');
+        this.onCancel();
+        this.showSpinner = false;
+      });
     }
-    this.onCancel();
   }
   initForm() {
     let user = new User();

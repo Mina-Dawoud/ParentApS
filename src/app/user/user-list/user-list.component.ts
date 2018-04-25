@@ -11,11 +11,13 @@ import { Subscription } from 'rxjs/Subscription';
 export class UserListComponent implements OnInit, OnDestroy {
   users: User[];
   subscription: Subscription;
+  pageNumber: number = 1;
+  showSpinner: boolean;
 
   constructor(private userService: UserService) { }
-  
+
   ngOnInit() {
-    this.users = this.userService.getUsers();
+    this.getUsersList();
     this.subscription = this.userService.userChanged
       .subscribe(
         (users: User[]) => {
@@ -25,5 +27,24 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+  private getUsersList() {
+    this.showSpinner = true;
+    this.userService.getUsers(this.pageNumber).subscribe((users: User[]) => {
+      this.users = users;
+      this.showSpinner = false;
+    });
+  }
+  increasePageNumber() {
+    if (this.pageNumber < this.userService.totalPages) {
+      this.pageNumber++;
+      this.getUsersList();
+    }
+  }
+  decreasePageNumber() {
+    if (this.pageNumber > 1) {
+      this.pageNumber--;
+      this.getUsersList();
+    }
   }
 }

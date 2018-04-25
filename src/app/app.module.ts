@@ -11,6 +11,7 @@ import { UserService } from './user/user.service';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from './shared/shared.module';
 import { UtilitiesService } from './shared/utilities/utilities.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { UtilitiesService } from './shared/utilities/utilities.service';
     ReactiveFormsModule,
     FormsModule,
     ToastrModule.forRoot(),
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ],
   providers: [UserService, AuthenticationService, UtilitiesService],
   bootstrap: [AppComponent]

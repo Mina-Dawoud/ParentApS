@@ -13,6 +13,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 export class UserDetailsComponent implements OnInit {
   currentUser: User;
   id: number;
+  showSpinner: boolean;
   @ViewChild('modal') modal: ModalComponent;
 
   constructor(private route: ActivatedRoute,
@@ -32,10 +33,13 @@ export class UserDetailsComponent implements OnInit {
     this.router.navigate(['edit'], { relativeTo: this.route });
   }
   onDeleteUser() {
-    this.userService.deleteUser(this.id);
     this.modal.hide();
-    this.utilities.showToast('User Deleted Successfully', 'Delete Message');
-    this.router.navigate(['../'], { relativeTo: this.route });
+    this.showSpinner = true;
+    this.userService.deleteUser(this.id).subscribe(() => {
+      this.utilities.showToast('User Deleted Successfully', 'Delete Message');
+      this.router.navigate(['../'], { relativeTo: this.route });
+      this.showSpinner = false;
+    });
   }
 
 }

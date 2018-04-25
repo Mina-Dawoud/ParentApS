@@ -7,6 +7,7 @@ export class UtilitiesService {
   constructor(private toastr: ToastrService) { }
   showToast(title: string, content: string) {
     this.toastr.clear();
+    this.toastr.toastrConfig.progressBar = true;
     this.toastr.success(content, title);
   }
 }
