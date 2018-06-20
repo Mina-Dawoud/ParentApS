@@ -1,17 +1,17 @@
 <div class="login-page">
   <div class="form">
-    <form class="login-form">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
       <div class="row">
         <div class="col-xs-12">
-          <input type="text" id="username" class="form-control" placeholder="username">
+          <input formControlName="username" type="text" id="username" class="form-control" placeholder="username">
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <input type="password" id="password" class="form-control" placeholder="password">
+          <input formControlName="password" type="password" id="password" class="form-control" placeholder="password">
         </div>
       </div>
-      <button type="submit" class="btn btn-success" (click)="login()">Login</button>
+      <button type="submit" class="btn btn-success" [disabled]="loginForm.invalid">Login</button>
     </form>
   </div>
 </div>

@@ -4,5 +4,8 @@ export const JSON_PATH = {
         firstName: '$.first_name',
         lastName: '$.last_name',
         imagePath: '$.avatar'
+    },
+    LOGIN: {
+        token: '$.token'
     }
 }

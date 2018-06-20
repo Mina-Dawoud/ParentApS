@@ -6,4 +6,7 @@ export const API_URLs = {
         'updateUser': environment.middlewareBaseUrl + 'users/{user_id}',
         'deleteUser': environment.middlewareBaseUrl + 'users/{user_id}'
     },
+    'Login': {
+        'authenticate': environment.middlewareBaseUrl + 'login'
+    }
 }

@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class UserListComponent implements OnInit, OnDestroy {
   users: User[];
-  subscription: Subscription;
+  userSubscription: Subscription;
   pageNumber: number = 1;
   showSpinner: boolean;
 
@@ -18,7 +18,7 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getUsersList();
-    this.subscription = this.userService.userChanged
+    this.userSubscription = this.userService.userChanged
       .subscribe(
         (users: User[]) => {
           this.users = users;
@@ -26,7 +26,7 @@ export class UserListComponent implements OnInit, OnDestroy {
       );
   }
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.userSubscription.unsubscribe();
   }
   private getUsersList() {
     this.showSpinner = true;
